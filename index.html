@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Noticia+Text" rel="stylesheet">
+  <title>How many of you?</title>
+</head>
+<body>
+<header class="header">
+  <h1 class="header__title">How many of you?</h1>
+</header>
+
+  <div class="person-info">
+    <img class="person-info__image" src='images/man-prof.png'>
+    <label for="weight">Enter your weight in kilograms:</label>
+    <input class="person-info__weight" type="number" name="weight" id="weight" placeholder="Weight in kg..." min="0" max="200" />
+  </div>
+
+  <div class="animals">
+    <span class="animals__text"> Choose the animal: </span>
+    <div class="animals__imgs">
+      <figure class="animals__big" id="elephant">
+        <img src="images/elephant_contour.svg" />
+      </figure>
+      <figure class="animals__big" id="camel">
+        <img src="images/camel_contour.svg" onload="SVGInject(this)" />
+      </figure>
+      <figure class="animals__high" id="giraffe">
+        <img src="images/giraffe_contour.svg" />
+      </figure>
+      <figure class="animals__small" id="baboon">
+        <img src="images/baboon_contour.svg" />
+      </figure>
+      <figure class="animals__small" id="dog">
+        <img src="images/dog_contour.svg" />
+      </figure>
+      <figure class="animals__small" id="cat">
+        <img src="images/cat_contour.svg" />
+      </figure>
+    </div>
+    <input class="animals__button" type="button" value="Calculate" id="calc" />
+  </div>
+
+<footer class="footer"></footer>
+
+<div id="myModal" class="modal-results">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-content_info" id="info">Some</div>
+    <figure class="modal__img">
+      <img id="result_img" src="images/camel_contour.svg" />
+    </figure>
+  </div>
+</div>
+
+
+<script src="src/main.js"></script>
+<script src="src/animals.js"></script>
+</body>
+</html>
