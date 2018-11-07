@@ -1,6 +1,3 @@
-# Code quality
-
-* [Jest](https://jestjs.io) - Zero configuration testing platform
 # ELEKS Front-Camp 2018
 
 * Course curator - [Volodymyr Shevchuk](https://github.com/dosandk)
