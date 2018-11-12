@@ -11,8 +11,8 @@ To make your pull requests, please:
 
 Main tasks are needed to be implemented please find in the TODO lists.
 
-## Report about bugs using Github's [issues](https://github.com/davydoka/how-many-of-you/issuess)
+## Report about bugs using Github's [issues](https://github.com/davydoka/how-many-of-you/issues)
 Use GitHub issues to track public bugs. Report a bug by [opening a new issue](); 
 
 ## Have some interesting features to implement? 
-Also use Github's [issues](https://github.com/davydoka/how-many-of-you/issuess).
+Also use Github's [issues](https://github.com/davydoka/how-many-of-you/issues).
