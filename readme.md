@@ -16,6 +16,10 @@ For everyone who wants some fun and a little bit of reflection.
 * html/css
 * iconfu/svg-inject
 
+## Contribution guide
+
+To contribute please visit [guide](https://github.com/davydoka/how-many-of-you/blob/master/.github/contributing-guides.md)
+
 ## Mockups
 
 [Link](https://wireframepro.mockflow.com/view/M6fb87f36ff6f9583be3c0d798ce82f5a1539260718772#/page/64c615d07bd14772ba0e9ec73a199f02)  
