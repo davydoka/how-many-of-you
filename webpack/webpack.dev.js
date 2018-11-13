@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -29,10 +30,10 @@ module.exports = {
           },
           {
             loader: 'css-loader', // translates CSS into CommonJS
-           // query: {
-           //   modules: true,
-           //   camelCase: true,
-              //localIdentName: '[name]__[local]___[hash:base64:5]'
+            // query: {
+            // modules: true,
+            // camelCase: true,
+            // localIdentName: '[name]__[local]___[hash:base64:5]'
             //}
           },
           {
@@ -49,6 +50,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html')
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [{
+        urlPattern: new RegExp('.(?:png|gif|jpg|svg)$'),
+        handler: 'cacheFirst'
+      }]
     })
   ],
   devServer: {

@@ -1,3 +1,13 @@
+$mob-width: 320px;
+$mini-tab: 500px;
+$tablet-width: 768px;
+
+@mixin mob($max-width: #{$tablet-width - 1px}) {
+  @media (min-width: #{$mob-width}) and (max-width: #{$max-width}) {
+    @content;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,6 +21,12 @@ body {
   grid-template-columns: minmax(100px, 5fr) 10fr;
   font-family: 'Noticia Text', serif;
   font-size: 20px;
+  min-height: 100%;
+
+  @include mob {
+    grid-template-rows: 100px auto auto 50px;
+    grid-template-columns: auto;
+  }
 }
 
 .header {
@@ -27,24 +43,27 @@ body {
 .header__title {
   text-shadow: 4px 3px 0 #7a7a7a;
   align-self: center;
+
+  @include mob {
+    font-size: 20px;
+  }
 }
 
 .person-info {
   grid-row-start: 2;
   grid-column-start: 1;
   text-align: center;
-  padding-top: 50px;
 }
 
 .person-info label,
 .person-info input {
   display: block;
-  margin: 45px auto 45px auto;
+  margin: 20px auto 20px auto;
 }
 
 .person-info__image {
   margin: 0 auto;
-  height: 250px;
+  width: 50%;
 }
 
 .person-info__weight {
@@ -58,13 +77,15 @@ body {
 }
 
 .animals {
-  grid-row-start: 2;
-  grid-column-start: 2;
   text-align: center;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include mob {
+    grid-row-start: 3;
+  }
 }
 
 .animals__imgs {
@@ -72,10 +93,11 @@ body {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  cursor: hand;
+  cursor: pointer;
   margin-top: 25px;
   margin-right: 25px;
-  width: 100%;
+  width: 60%;
+  justify-content: space-around;
 }
 
 .animals__imgs figure {
@@ -87,7 +109,7 @@ body {
 }
 
 .animals__big {
-  width: 30% !important;
+  width: 38% !important;
 }
 
 .animals__high {
@@ -98,8 +120,6 @@ body {
 .animals__small {
   width: 20% !important;
 }
-
-
 
 .animals__imgs img:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
@@ -125,36 +145,47 @@ body {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-/**************/
-
 .modal-results {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+
+  @include mob {
+    flex-direction: column-reverse;
+  }
 }
 
-/* The Close Button */
+.result_img {
+  width: 150px;
+}
+
 .close {
   color: #aaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  position: absolute;
+  top: 0px;
+  right: 13px;
 }
 
 .close:hover,
@@ -164,10 +195,12 @@ body {
   cursor: pointer;
 }
 
-/******/
-
 .footer {
   grid-column: 1 / 3;
   width: 100%;
   background: url("../images/footer-bg.png") repeat-x center top;
+
+  @include mob {
+    grid-row-start: 4;
+  }
 }

@@ -23,22 +23,22 @@
     <span class="animals__text"> Choose the animal: </span>
     <div class="animals__imgs">
       <figure class="animals__big" id="elephant">
-        <img src="images/elephant_contour.svg" />
+        <img src="images/elephant_contour.svg" class="injectable" data-viewBox="0 0 454 413" />
       </figure>
       <figure class="animals__big" id="camel">
-        <img src="images/camel_contour.svg" onload="SVGInject(this)" />
+        <img src="images/camel_contour.svg" class="injectable" data-viewBox="0 0 430 474" />
       </figure>
       <figure class="animals__high" id="giraffe">
-        <img src="images/giraffe_contour.svg" />
+        <img src="images/giraffe_contour.svg" class="injectable" data-viewBox="0 0 288 582" />
       </figure>
       <figure class="animals__small" id="baboon">
-        <img src="images/baboon_contour.svg" />
+        <img src="images/baboon_contour.svg" class="injectable" data-viewBox="0 0 366 314" />
       </figure>
       <figure class="animals__small" id="dog">
-        <img src="images/dog_contour.svg" />
+        <img src="images/dog_contour.svg" class="injectable" data-viewBox="0 0 350 450" />
       </figure>
       <figure class="animals__small" id="cat">
-        <img src="images/cat_contour.svg" />
+        <img src="images/cat_contour.svg" class="injectable" data-viewBox="0 0 300 270" />
       </figure>
     </div>
     <input class="animals__button" type="button" value="Calculate" id="calc" />
@@ -47,18 +47,15 @@
 <footer class="footer"></footer>
 
 <div id="myModal" class="modal-results">
-  <!-- Modal content -->
-  <div class="modal-content">
+    <div class="modal-content">
     <span class="close">&times;</span>
-    <div class="modal-content_info" id="info">Some</div>
+    <div class="modal-content_info" id="info">
+    </div>
     <figure class="modal__img">
-      <img id="result_img" src="images/camel_contour.svg" />
+      <img id="result_img" class="result_img" src="images/baboon_contour.svg" />
     </figure>
   </div>
 </div>
 
-
-<script src="src/main.js"></script>
-<script src="src/animals.js"></script>
 </body>
 </html>

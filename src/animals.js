@@ -1,41 +1,105 @@
 const _addListener = Symbol('addListener');
 
 class Animal {
-  constructor (animalType, animalWeight) {
-    this.animalType = animalType;
-    this.animalWeight = animalWeight;
-    this.$element = document.getElementById(animalType);
-    this.$image = this.$element.children[0];
+  constructor (params, parentRef = null) {
+    this.animalType = params.animalType;
+    this.animalWeight = params.animalWeight;
+    this.weightInput = params.weightInput;
+    this.allAnimals = parentRef;
+    this.$element = document.getElementById(params.animalType);
+    this.$image = this.$element !== null ? this.$element.children[0] : null;
+    this.active = false;
 
-    this[_addListener]();
+    if (this.allAnimals !== null) {
+      this[_addListener]();
+    }
   }
-  getFullName () {
-    return this.animalType + ' ' + this.animalWeight;
+
+  setColor (color) {
+    const svgPath = this.$element.children[0].getElementsByTagName('path')[0];
+    svgPath.setAttributeNS(null,'style',`fill: ${color}`);
+  }
+
+  isActive (){
+    return this.active;
+  }
+
+  getImage () {
+    return this.$image;
+  }
+
+  activate () {
+    this.active = true;
+    this.allAnimals.setActiveAnimal(this);
+  }
+
+  deActivate () {
+    this.active = false;
+    this.allAnimals.resetActiveAnimal();
+  }
+
+  validate () {
+    const $personWeight = this.weightInput.value;
+
+    return /^([0-1]{0,1}[0-9]{1,2}|200)$/gi.test($personWeight);
+  }
+
+  compare () {
+    const $personWeight = this.weightInput.value;
+
+    const relativeWeight = $personWeight / this.animalWeight;
+
+    return relativeWeight;
   }
 
   [_addListener] (){
     this.$element.addEventListener('click', () => {
-      const $personWeight = document.getElementById('weight').value;
-      console.log(this.getFullName(), this.animalWeight / $personWeight, this.$image);
-      console.log(this.$element.children[0].getElementsByTagName('path')[0]);
-      document.getElementById('path3').setAttributeNS(null,'style','fill: green');
-      //path3.style.fill='yellow';
+
+      this.allAnimals.resetAll();
+      this.setColor('green');
+      this.activate();
     });
   }
 }
 
-const animals = {
-  'elephant': 2700,
-  'camel': 700,
-  'giraffe':400,
-  'baboon': 90,
-  'dog': 40,
-  'cat': 10
-};
+class Animals {
+  constructor (animalsList, weightInput, defaultColor = '#000') {
+    this.animals = [];
+    this.defaultColor = defaultColor;
+    this.activeAnimal = null;
+    this.weightInput = weightInput;
 
-for (const [key, value] of Object.entries(animals)) {
-  new Animal (key, value);
+    for (const [key, value] of Object.entries(animalsList)) {
+      this.createNew (key, value);
+    }
+  }
+
+  createNew (animalType, animalWeight) {
+    this.animals.push( new Animal({
+      'animalType': animalType,
+      'animalWeight': animalWeight,
+      'weightInput': this.weightInput
+    }, this));
+  }
+
+  getAll () {
+    return this.animals;
+  }
+
+  setActiveAnimal (animal) {
+    this.activeAnimal = animal;
+  }
+
+  resetActiveAnimal () {
+    this.activeAnimal = null;
+  }
+
+  resetAll () {
+    this.getAll().forEach( it => {
+      it.setColor(this.defaultColor);
+      it.deActivate();
+    });
+  }
 }
 
-
-
+export {Animals, Animal};
