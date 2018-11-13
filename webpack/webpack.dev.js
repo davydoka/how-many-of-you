@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -9,11 +10,21 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/how-many-of-you/',
   },
   devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
+      {
+        test: /\.html$/,
+        use: [ {
+          loader: 'html-loader',
+          options: {
+            minimize: true
+          }
+        }]
+      },
       {
         test: /\.js?$/,
         exclude: [/(node_modules)/, /\.spec\.js$/],
@@ -24,22 +35,10 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader' // creates style nodes from JS strings
-          },
-          {
-            loader: 'css-loader', // translates CSS into CommonJS
-            // query: {
-            // modules: true,
-            // camelCase: true,
-            // localIdentName: '[name]__[local]___[hash:base64:5]'
-            //}
-          },
-          {
-            loader: 'sass-loader' // compiles Sass to CSS
-          }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       },
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
@@ -51,6 +50,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve('./index.html')
     }),
+    new ExtractTextPlugin('style.css'),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
