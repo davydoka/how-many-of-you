@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/how-many-of-you/precache-manifest.f73590579f69fff160a717a7f47ab897.js"
+  "/how-many-of-you/precache-manifest.c2c561757eef03cb5777311daeaa385f.js"
 );
 
 workbox.skipWaiting();
