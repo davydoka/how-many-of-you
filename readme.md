@@ -15,6 +15,13 @@ For everyone who wants some fun and a little bit of reflection.
 * javascript 
 * html/css
 * iconfu/svg-inject
+* GoogleChrome/workbox
+
+## TODO
+
+* Implement graphic display of calculation results (animal contour filling)
+* Add another types of animals
+* Improve tests
 
 ## Contribution guide
 
